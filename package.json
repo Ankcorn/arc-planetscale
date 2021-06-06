@@ -1,0 +1,26 @@
+{
+  "name": "arc-planetscale",
+  "version": "0.0.0",
+  "description": "A fresh new Architect project!",
+  "scripts": {
+    "build": "npm run clean && tsc && npm run copy-cfg",
+    "clean": "rm -rf dist",
+    "copy-cfg": "find src -name '*.arc' | cpio -pdm --quiet dist && cp -rf dist/src/* dist/. && rm -rf dist/src",
+    "watch": "tsc -w",
+    "serve": "arc sandbox",
+    "start": "npm run build && concurrently npm:watch npm:serve",
+    "deploy:staging": "npm run build && arc deploy",
+    "deploy:production": "npm run build && arc deploy production"
+  },
+  "devDependencies": {
+    "@architect/architect": "^8.6.0",
+    "@architect/functions": "^3.14.1",
+    "@types/architect__functions": "^3.13.4",
+    "@types/node": "^15.12.1",
+    "concurrently": "^6.2.0",
+    "prisma": "^2.24.1",
+    "ts-node": "^10.0.0",
+    "tslib": "^2.2.0",
+    "typescript": "^4.3.2"
+  }
+}
